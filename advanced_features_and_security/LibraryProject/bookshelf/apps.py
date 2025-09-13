@@ -8,6 +8,10 @@ class BookshelfConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'bookshelf'
 
+    def ready(self):
+        import bookshelf.signals
+
+
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     fieldsets = UserAdmin.fieldsets + (
@@ -18,3 +22,4 @@ class CustomUserAdmin(UserAdmin):
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
+

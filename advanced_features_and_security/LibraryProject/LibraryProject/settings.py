@@ -173,6 +173,9 @@ CSP_IMG_SRC = ("'self'",)
 # ==============================
 # 🔐 Django Security Best Practices
 # ==============================
+# Tell Django how to detect a secure connection behind a proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 
 # Redirect all HTTP requests to HTTPS
 SECURE_SSL_REDIRECT = True  

@@ -6,11 +6,16 @@ from django.contrib.auth.decorators import permission_required
 from .models import Book
 from .forms import BookForm
 
+
+
+# View for listing books safely
 @permission_required('bookshelf.can_view', raise_exception=True)
 def book_list(request):
-    books = Book.objects.all()
+    query = request.GET.get('q', '')
+    books = Book.objects.filter(title__icontains=query)  # Safe ORM query
     return render(request, 'bookshelf/book_list.html', {'books': books})
 
+# Example view for adding a book
 @permission_required('bookshelf.can_create', raise_exception=True)
 def add_book(request):
     if request.method == 'POST':
@@ -22,7 +27,7 @@ def add_book(request):
             return redirect('book_list')
     else:
         form = BookForm()
-    return render(request, 'bookshelf/add_book.html', {'form': form})
+    return render(request, 'bookshelf/form_example.html', {'form': form})
 
 @permission_required('bookshelf.can_edit', raise_exception=True)
 def edit_book(request, pk):
@@ -38,3 +43,5 @@ def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     book.delete()
     return redirect('book_list')
+
+

@@ -1,11 +1,20 @@
-<h1>Books</h1>
-<a href={% url add_book %}>Add Book</a>
-<ul>
-{% for book in books %}
-    <li>{{ book.title }} by {{ book.author }} ({{ book.publication_year }})
-        <a href={% url edit_book book.id %}>Edit</a>
-        <a href={% url delete_book book.id %}>Delete</a>
-    </li>
-{% endfor %}
-</ul>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+    <h1>Books</h1>
+    <form method="get">
+        <input type="text" name="q" placeholder="Search books">
+        <button type="submit">Search</button>
+    </form>
+    <a href="{% url 'add_book' %}">Add Book</a>
+    <ul>
+        {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }} ({{ book.publication_year }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

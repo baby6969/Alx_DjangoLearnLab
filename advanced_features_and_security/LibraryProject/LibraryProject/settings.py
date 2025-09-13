@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'users',
     # your app
     "relationship_app",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    ...
+    'bookshelf',         # <-- add this
+    'relationship_app', 
     # Tell Django to use our custom user model
    AUTH_USER_MODEL = 'users.CustomUser'
 ]

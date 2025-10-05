@@ -50,3 +50,21 @@ def clean_title(self):
  if len(title) < 3:
     raise forms.ValidationError('Title must be at least 3 characters long')
  return title
+
+
+class CommentForm(forms.ModelForm):
+ class Meta:
+    model = Comment
+    fields = ['content']
+    widgets = {
+    'content': forms.Textarea(attrs={'placeholder': 'Write a comment...', 'class': 'form-control', 'rows': 4}),
+    }
+
+
+def clean_content(self):
+    content = self.cleaned_data.get('content', '').strip()
+    if not content:
+        raise forms.ValidationError('Comment cannot be empty')
+    if len(content) > 2000:
+        raise forms.ValidationError('Comment too long (2000 characters max)')
+    return content

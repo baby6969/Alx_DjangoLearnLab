@@ -32,15 +32,18 @@ urlpatterns = [
 ]
 
 
+
 urlpatterns = [
-    path('posts/', views.PostListView.as_view(), name='posts'),  # list view
-    path('post/new/', views.PostCreateView.as_view(), name='post-create'),
+    path('posts/', views.PostListView.as_view(), name='posts'), 
+    path('post/new/', views.PostCreateView.as_view(), name='post-create'), 
     path('post/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
-    path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
+    path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'), 
     path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),
 ]
 
 
+
+b
 # Serve media files in dev (for avatar)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

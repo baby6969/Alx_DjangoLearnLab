@@ -40,7 +40,7 @@ urlpatterns = [
     path("post/<int:pk>/update/",views.PostUpdateView.as_view(), name='post-update'), 
     path("post/<int:pk>/delete/",views.PostDeleteView.as_view(), name='post-delete'),
 ]
-
+["post/<int:pk>/delete/", "post/<int:pk>/update/", "post/new/"]
 
 
 b

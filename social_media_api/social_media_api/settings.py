@@ -123,3 +123,21 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Custom user model
+AUTH_USER_MODEL = 'accounts.User'
+
+
+# REST framework config (optional defaults)
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': (
+'rest_framework.authentication.TokenAuthentication',
+),
+'DEFAULT_PERMISSION_CLASSES': (
+'rest_framework.permissions.IsAuthenticated',
+),
+}
+
+# Media (for profile pictures)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -10,6 +10,17 @@ from notifications.models import Notification
 User = get_user_model()
 
 
+
+class PostDetailView(generics.GenericAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, pk, *args, **kwargs):
+        post = get_object_or_404(Post, pk=pk)  
+        serializer = self.get_serializer(post)
+        return Response(serializer.data)
+
+
 class IsAuthorOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
@@ -53,7 +64,7 @@ class LikePostView(generics.GenericAPIView):
         if not created:
             return Response({'detail': 'Already liked'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Create a notification
+    
         if post.author != request.user:
             Notification.objects.create(
                 recipient=post.author,

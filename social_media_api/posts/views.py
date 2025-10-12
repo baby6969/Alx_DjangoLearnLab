@@ -16,7 +16,7 @@ class PostDetailView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, pk, *args, **kwargs):
-        post = get_object_or_404(Post, pk=pk)  
+        post = generics.get_object_or_404(Post, pk=pk)  
         serializer = self.get_serializer(post)
         return Response(serializer.data)
 

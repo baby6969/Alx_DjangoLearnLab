@@ -40,3 +40,13 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email']
+
+
+
+class FollowSerializer(serializers.Serializer):
+    target_user_id = serializers.IntegerField()
+
+class FollowerListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']

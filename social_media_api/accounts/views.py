@@ -6,6 +6,11 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = FollowerListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 class FollowUserView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FollowSerializer
